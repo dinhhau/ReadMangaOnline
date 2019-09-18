@@ -1,0 +1,22 @@
+﻿Thông tin server: 14.225.5.246:222 user:econtact/viettel#2017, user: root/123qscesz
+- download vaf đẩy thư mục tomcat sang server deploy
+- build file war.
+- đẩy file war vào thư mục /home/econtact/VPCP/apache-tomcat-8.0.53/webapps
+- đổi port của server tại file /home/econtact/VPCP/apache-tomcat-8.0.53/conf/server.xml
+
+    <Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+=>
+    <Connector port="8081" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+ - cấp quyền cho các file *.sh trong thư mục /home/econtact/VPCP/apache-tomcat-8.0.53/bin: cậu lệnh chmod 775 *.sh
+ - Tạo JAVA_HOME: câu lệnh : export JAVA_HOME="/home/visapp/jre1.8.0_181"
+ - mở port public(chaỵ bằng user root): firewall-cmd --zone=public --add-port=8081/tcp
+ + đọc những dòng cuối của file log  : tail -n 50 catalina.out 
+ + đọc toàn bộ file : less catalina.out
+ + lệnh check port đã được sử dụng hay chưa: telnet localhost 8089
+ + Cách xem log : tìm đến thư mục chứa log : tailf '--- Tên file log ---'
