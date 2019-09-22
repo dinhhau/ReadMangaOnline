@@ -6,32 +6,32 @@ import javax.persistence.*;
 @Table(name = "tblComic_Type", schema = "dbo", catalog = "MangaOnline")
 @IdClass(TblComicTypeEntityPK.class)
 public class TblComicTypeEntity {
-    private String typeId;
-    private String comicId;
+    private int typeId;
+    private int comicId;
     private String code;
 
     @Id
-    @Column(name = "TypeID")
-    public String getTypeId() {
+    @Column(name = "TypeID", nullable = false)
+    public int getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(String typeId) {
+    public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
 
     @Id
-    @Column(name = "ComicID")
-    public String getComicId() {
+    @Column(name = "ComicID", nullable = false)
+    public int getComicId() {
         return comicId;
     }
 
-    public void setComicId(String comicId) {
+    public void setComicId(int comicId) {
         this.comicId = comicId;
     }
 
     @Basic
-    @Column(name = "Code")
+    @Column(name = "Code", nullable = true, length = 1)
     public String getCode() {
         return code;
     }
@@ -47,8 +47,8 @@ public class TblComicTypeEntity {
 
         TblComicTypeEntity that = (TblComicTypeEntity) o;
 
-        if (typeId != null ? !typeId.equals(that.typeId) : that.typeId != null) return false;
-        if (comicId != null ? !comicId.equals(that.comicId) : that.comicId != null) return false;
+        if (typeId != that.typeId) return false;
+        if (comicId != that.comicId) return false;
         if (code != null ? !code.equals(that.code) : that.code != null) return false;
 
         return true;
@@ -56,8 +56,8 @@ public class TblComicTypeEntity {
 
     @Override
     public int hashCode() {
-        int result = typeId != null ? typeId.hashCode() : 0;
-        result = 31 * result + (comicId != null ? comicId.hashCode() : 0);
+        int result = typeId;
+        result = 31 * result + comicId;
         result = 31 * result + (code != null ? code.hashCode() : 0);
         return result;
     }

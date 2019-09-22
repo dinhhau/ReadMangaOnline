@@ -5,26 +5,26 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 public class TblUserChapterEntityPK implements Serializable {
-    private String userId;
-    private String chapterId;
+    private int userId;
+    private int chapterId;
 
-    @Column(name = "UserID")
+    @Column(name = "UserID", nullable = false)
     @Id
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    @Column(name = "ChapterID")
+    @Column(name = "ChapterID", nullable = false)
     @Id
-    public String getChapterId() {
+    public int getChapterId() {
         return chapterId;
     }
 
-    public void setChapterId(String chapterId) {
+    public void setChapterId(int chapterId) {
         this.chapterId = chapterId;
     }
 
@@ -35,16 +35,16 @@ public class TblUserChapterEntityPK implements Serializable {
 
         TblUserChapterEntityPK that = (TblUserChapterEntityPK) o;
 
-        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (chapterId != null ? !chapterId.equals(that.chapterId) : that.chapterId != null) return false;
+        if (userId != that.userId) return false;
+        if (chapterId != that.chapterId) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = userId != null ? userId.hashCode() : 0;
-        result = 31 * result + (chapterId != null ? chapterId.hashCode() : 0);
+        int result = userId;
+        result = 31 * result + chapterId;
         return result;
     }
 }

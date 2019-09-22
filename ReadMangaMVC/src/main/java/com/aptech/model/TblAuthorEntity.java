@@ -6,23 +6,23 @@ import java.sql.Date;
 @Entity
 @Table(name = "tblAuthor", schema = "dbo", catalog = "MangaOnline")
 public class TblAuthorEntity {
-    private String authorId;
+    private int authorId;
     private String name;
     private String gender;
     private Date birthday;
 
     @Id
-    @Column(name = "AuthorID")
-    public String getAuthorId() {
+    @Column(name = "AuthorID", nullable = false)
+    public int getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(String authorId) {
+    public void setAuthorId(int authorId) {
         this.authorId = authorId;
     }
 
     @Basic
-    @Column(name = "Name")
+    @Column(name = "Name", nullable = true, length = 50)
     public String getName() {
         return name;
     }
@@ -32,7 +32,7 @@ public class TblAuthorEntity {
     }
 
     @Basic
-    @Column(name = "Gender")
+    @Column(name = "Gender", nullable = true, length = 10)
     public String getGender() {
         return gender;
     }
@@ -42,7 +42,7 @@ public class TblAuthorEntity {
     }
 
     @Basic
-    @Column(name = "Birthday")
+    @Column(name = "Birthday", nullable = true)
     public Date getBirthday() {
         return birthday;
     }
@@ -58,7 +58,7 @@ public class TblAuthorEntity {
 
         TblAuthorEntity that = (TblAuthorEntity) o;
 
-        if (authorId != null ? !authorId.equals(that.authorId) : that.authorId != null) return false;
+        if (authorId != that.authorId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (gender != null ? !gender.equals(that.gender) : that.gender != null) return false;
         if (birthday != null ? !birthday.equals(that.birthday) : that.birthday != null) return false;
@@ -68,7 +68,7 @@ public class TblAuthorEntity {
 
     @Override
     public int hashCode() {
-        int result = authorId != null ? authorId.hashCode() : 0;
+        int result = authorId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);

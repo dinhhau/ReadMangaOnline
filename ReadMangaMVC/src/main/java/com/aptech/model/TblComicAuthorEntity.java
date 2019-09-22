@@ -6,32 +6,32 @@ import javax.persistence.*;
 @Table(name = "tblComic_Author", schema = "dbo", catalog = "MangaOnline")
 @IdClass(TblComicAuthorEntityPK.class)
 public class TblComicAuthorEntity {
-    private String authorId;
-    private String comicId;
+    private int authorId;
+    private int comicId;
     private String code;
 
     @Id
-    @Column(name = "AuthorID")
-    public String getAuthorId() {
+    @Column(name = "AuthorID", nullable = false)
+    public int getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(String authorId) {
+    public void setAuthorId(int authorId) {
         this.authorId = authorId;
     }
 
     @Id
-    @Column(name = "ComicID")
-    public String getComicId() {
+    @Column(name = "ComicID", nullable = false)
+    public int getComicId() {
         return comicId;
     }
 
-    public void setComicId(String comicId) {
+    public void setComicId(int comicId) {
         this.comicId = comicId;
     }
 
     @Basic
-    @Column(name = "Code")
+    @Column(name = "Code", nullable = true, length = 1)
     public String getCode() {
         return code;
     }
@@ -47,8 +47,8 @@ public class TblComicAuthorEntity {
 
         TblComicAuthorEntity that = (TblComicAuthorEntity) o;
 
-        if (authorId != null ? !authorId.equals(that.authorId) : that.authorId != null) return false;
-        if (comicId != null ? !comicId.equals(that.comicId) : that.comicId != null) return false;
+        if (authorId != that.authorId) return false;
+        if (comicId != that.comicId) return false;
         if (code != null ? !code.equals(that.code) : that.code != null) return false;
 
         return true;
@@ -56,8 +56,8 @@ public class TblComicAuthorEntity {
 
     @Override
     public int hashCode() {
-        int result = authorId != null ? authorId.hashCode() : 0;
-        result = 31 * result + (comicId != null ? comicId.hashCode() : 0);
+        int result = authorId;
+        result = 31 * result + comicId;
         result = 31 * result + (code != null ? code.hashCode() : 0);
         return result;
     }

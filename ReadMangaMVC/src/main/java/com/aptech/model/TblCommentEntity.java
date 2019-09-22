@@ -7,33 +7,33 @@ import java.sql.Timestamp;
 @Table(name = "tblComment", schema = "dbo", catalog = "MangaOnline")
 @IdClass(TblCommentEntityPK.class)
 public class TblCommentEntity {
-    private String userId;
-    private String comicId;
+    private int userId;
+    private int comicId;
     private Timestamp time;
     private String comment;
 
     @Id
-    @Column(name = "UserID")
-    public String getUserId() {
+    @Column(name = "UserID", nullable = false)
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
     @Id
-    @Column(name = "ComicID")
-    public String getComicId() {
+    @Column(name = "ComicID", nullable = false)
+    public int getComicId() {
         return comicId;
     }
 
-    public void setComicId(String comicId) {
+    public void setComicId(int comicId) {
         this.comicId = comicId;
     }
 
     @Basic
-    @Column(name = "Time")
+    @Column(name = "Time", nullable = true)
     public Timestamp getTime() {
         return time;
     }
@@ -43,7 +43,7 @@ public class TblCommentEntity {
     }
 
     @Basic
-    @Column(name = "Comment")
+    @Column(name = "Comment", nullable = true, length = 1)
     public String getComment() {
         return comment;
     }
@@ -59,8 +59,8 @@ public class TblCommentEntity {
 
         TblCommentEntity that = (TblCommentEntity) o;
 
-        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (comicId != null ? !comicId.equals(that.comicId) : that.comicId != null) return false;
+        if (userId != that.userId) return false;
+        if (comicId != that.comicId) return false;
         if (time != null ? !time.equals(that.time) : that.time != null) return false;
         if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
 
@@ -69,8 +69,8 @@ public class TblCommentEntity {
 
     @Override
     public int hashCode() {
-        int result = userId != null ? userId.hashCode() : 0;
-        result = 31 * result + (comicId != null ? comicId.hashCode() : 0);
+        int result = userId;
+        result = 31 * result + comicId;
         result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
         return result;

@@ -6,26 +6,26 @@ import javax.persistence.*;
 @Table(name = "tblRate", schema = "dbo", catalog = "MangaOnline")
 @IdClass(TblRateEntityPK.class)
 public class TblRateEntity {
-    private String userId;
-    private String comicId;
+    private int userId;
+    private int comicId;
 
     @Id
-    @Column(name = "UserID")
-    public String getUserId() {
+    @Column(name = "UserID", nullable = false)
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
     @Id
-    @Column(name = "ComicID")
-    public String getComicId() {
+    @Column(name = "ComicID", nullable = false)
+    public int getComicId() {
         return comicId;
     }
 
-    public void setComicId(String comicId) {
+    public void setComicId(int comicId) {
         this.comicId = comicId;
     }
 
@@ -36,16 +36,16 @@ public class TblRateEntity {
 
         TblRateEntity that = (TblRateEntity) o;
 
-        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (comicId != null ? !comicId.equals(that.comicId) : that.comicId != null) return false;
+        if (userId != that.userId) return false;
+        if (comicId != that.comicId) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = userId != null ? userId.hashCode() : 0;
-        result = 31 * result + (comicId != null ? comicId.hashCode() : 0);
+        int result = userId;
+        result = 31 * result + comicId;
         return result;
     }
 }

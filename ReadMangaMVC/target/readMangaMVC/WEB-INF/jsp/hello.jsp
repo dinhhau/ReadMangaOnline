@@ -6,93 +6,78 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <title>Hello Word</title>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-    $(document).ready(function () {
-//login
-        $("#btnLogin").click(function () {
-
-            var email =$("#txt_user").val();
-            var pass =$("#txt_pass").val();
-            if(email == ""){
-                alert("email không được để trống!");
-                return ;
-            }
-            if(pass ==""){
-                alert("password không được để trống");
-                return ;
-            }
-            alert("OK!" + email);
-            // $.ajax({
-            //
-            //     url:"/rentalcar/api/Checklogin",
-            //     type:"GET",
-            //     data:{
-            //         email:email,
-            //         matkhau:pass
-            //     },
-            //     success:function (value) {
-            //         if(value=="true"){
-            //             duongdanhientai = window.location.href;
-            //             duongdan =duongdanhientai.replace("login/","");
-            //             window.location =duongdan;
-            //
-            //
-            //         }else{
-            //             $("#ketqua").text(" Sai tài khoản or mật khẩu!")
-            //         }
-            //     }
-            // })
-        });
-
-    })
-
-
-
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 <body>
-    <h2>${h}</h2>
-    <div class="all_login">
-
-        <div class="b_login">
-            <div class="b_login_body">
-
-                <table>
-
-                    <tr>
-
-                        <td class="b_login_body_label">Tên tài khoản</td>
-                    </tr>
-                    <tr>
-                        <td><input class="input" type="text" name="email"
-                                   id="txt_user"></td>
-
-
-                    </tr>
-                    <tr>
-                        <td class="b_login_body_label">Mật khẩu</td>
-                    </tr>
-                    <tr>
-                        <td><input class="input" type="password" name="matkhau"
-                                   id="txt_pass"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" name="ckghinho" id="ckghinho"><a>
-                            Ghi nhớ đăng nhập</a></td>
-                    </tr>
-                </table>
-                <div class="b_login_foot">
-                    <div class="b_login_but"><input type="submit" class="but" name="btnLogin" id="btnLogin" value="Đăng nhập" /></div>
-
-                    <span style="color:yellow" id="ketqua"> </span>
-                </div>
-
+<table id="table-car" class=" table">
+    <thead>
+    <tr>
+        <th>
+            <div class="checkbox">
+                <label><input id="check-all" type="checkbox" value=""/></label>
             </div>
-        </div>
-    </div>
+        </th>
+        <th>Tên KH</th>
+        <th>Mail</th>
+        <th>Ngày lập</th>
+        <th>Trạng thái</th>
+        <th>Quê quán</th>
+        <th>ý kiến</th>
+
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="ds" items="${h}">
+        <tr >
+            <td></td>
+            <td>${ds.name} </a></td>
+            <td> ${ds.userId }</td>
+            <td>${ds.address }</td>
+            <td>${ds.gender}</td>
+            <td>${ds.username }</td>
+            <td>${ds.password }</td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+<p>Username</p> <input type="text" id="user">
+<p>Password</p> <input type="password" id="pass">
+<button id="dangKy">Dang ky</button>
 </body>
+<script rel="script" type="text/javascript">
+
+    $(document).ready(function () {
+        $("#dangKy").click(function () {
+
+            var email =$("#user").val();
+            var pass =$("#pass").val();
+            $.ajax({
+                url:"readMangaOnline/dangKy",
+                type:"GET",
+                data:{
+                    email:email,
+                    matkhau:pass
+                },
+                success:function (value) {
+                    if(value=="true"){
+                        window.location.reload();
+
+
+                    }else{
+                        alert("That bai");
+                    }
+                }
+            })
+        });
+    })
+</script>
 </html>

@@ -6,7 +6,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "tblUser", schema = "dbo", catalog = "MangaOnline")
 public class TblUserEntity {
-    private String userId;
+    private int userId;
     private String username;
     private String password;
     private String name;
@@ -17,17 +17,17 @@ public class TblUserEntity {
     private String gender;
 
     @Id
-    @Column(name = "UserID")
-    public String getUserId() {
+    @Column(name = "UserID", nullable = false)
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
     @Basic
-    @Column(name = "Username")
+    @Column(name = "Username", nullable = true, length = 20)
     public String getUsername() {
         return username;
     }
@@ -37,7 +37,7 @@ public class TblUserEntity {
     }
 
     @Basic
-    @Column(name = "Password")
+    @Column(name = "Password", nullable = true, length = 20)
     public String getPassword() {
         return password;
     }
@@ -47,7 +47,7 @@ public class TblUserEntity {
     }
 
     @Basic
-    @Column(name = "Name")
+    @Column(name = "Name", nullable = true, length = 50)
     public String getName() {
         return name;
     }
@@ -57,7 +57,7 @@ public class TblUserEntity {
     }
 
     @Basic
-    @Column(name = "Address")
+    @Column(name = "Address", nullable = true, length = 50)
     public String getAddress() {
         return address;
     }
@@ -67,7 +67,7 @@ public class TblUserEntity {
     }
 
     @Basic
-    @Column(name = "Birthday")
+    @Column(name = "Birthday", nullable = true)
     public Date getBirthday() {
         return birthday;
     }
@@ -77,7 +77,7 @@ public class TblUserEntity {
     }
 
     @Basic
-    @Column(name = "Phone")
+    @Column(name = "Phone", nullable = true, length = 20)
     public String getPhone() {
         return phone;
     }
@@ -87,7 +87,7 @@ public class TblUserEntity {
     }
 
     @Basic
-    @Column(name = "Email")
+    @Column(name = "Email", nullable = true, length = 50)
     public String getEmail() {
         return email;
     }
@@ -97,7 +97,7 @@ public class TblUserEntity {
     }
 
     @Basic
-    @Column(name = "Gender")
+    @Column(name = "Gender", nullable = true, length = 10)
     public String getGender() {
         return gender;
     }
@@ -111,24 +111,24 @@ public class TblUserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TblUserEntity that = (TblUserEntity) o;
+        TblUserEntity entity = (TblUserEntity) o;
 
-        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (username != null ? !username.equals(that.username) : that.username != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (birthday != null ? !birthday.equals(that.birthday) : that.birthday != null) return false;
-        if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (gender != null ? !gender.equals(that.gender) : that.gender != null) return false;
+        if (userId != entity.userId) return false;
+        if (username != null ? !username.equals(entity.username) : entity.username != null) return false;
+        if (password != null ? !password.equals(entity.password) : entity.password != null) return false;
+        if (name != null ? !name.equals(entity.name) : entity.name != null) return false;
+        if (address != null ? !address.equals(entity.address) : entity.address != null) return false;
+        if (birthday != null ? !birthday.equals(entity.birthday) : entity.birthday != null) return false;
+        if (phone != null ? !phone.equals(entity.phone) : entity.phone != null) return false;
+        if (email != null ? !email.equals(entity.email) : entity.email != null) return false;
+        if (gender != null ? !gender.equals(entity.gender) : entity.gender != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = userId != null ? userId.hashCode() : 0;
+        int result = userId;
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);

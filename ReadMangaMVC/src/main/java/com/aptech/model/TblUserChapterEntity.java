@@ -6,32 +6,32 @@ import javax.persistence.*;
 @Table(name = "tblUser_Chapter", schema = "dbo", catalog = "MangaOnline")
 @IdClass(TblUserChapterEntityPK.class)
 public class TblUserChapterEntity {
-    private String userId;
-    private String chapterId;
+    private int userId;
+    private int chapterId;
     private Integer count;
 
     @Id
-    @Column(name = "UserID")
-    public String getUserId() {
+    @Column(name = "UserID", nullable = false)
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
     @Id
-    @Column(name = "ChapterID")
-    public String getChapterId() {
+    @Column(name = "ChapterID", nullable = false)
+    public int getChapterId() {
         return chapterId;
     }
 
-    public void setChapterId(String chapterId) {
+    public void setChapterId(int chapterId) {
         this.chapterId = chapterId;
     }
 
     @Basic
-    @Column(name = "Count")
+    @Column(name = "Count", nullable = true)
     public Integer getCount() {
         return count;
     }
@@ -47,8 +47,8 @@ public class TblUserChapterEntity {
 
         TblUserChapterEntity that = (TblUserChapterEntity) o;
 
-        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (chapterId != null ? !chapterId.equals(that.chapterId) : that.chapterId != null) return false;
+        if (userId != that.userId) return false;
+        if (chapterId != that.chapterId) return false;
         if (count != null ? !count.equals(that.count) : that.count != null) return false;
 
         return true;
@@ -56,8 +56,8 @@ public class TblUserChapterEntity {
 
     @Override
     public int hashCode() {
-        int result = userId != null ? userId.hashCode() : 0;
-        result = 31 * result + (chapterId != null ? chapterId.hashCode() : 0);
+        int result = userId;
+        result = 31 * result + chapterId;
         result = 31 * result + (count != null ? count.hashCode() : 0);
         return result;
     }

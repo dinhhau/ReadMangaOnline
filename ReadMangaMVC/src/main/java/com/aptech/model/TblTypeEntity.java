@@ -5,21 +5,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tblType", schema = "dbo", catalog = "MangaOnline")
 public class TblTypeEntity {
-    private String typeId;
+    private int typeId;
     private String name;
 
     @Id
-    @Column(name = "TypeID")
-    public String getTypeId() {
+    @Column(name = "TypeID", nullable = false)
+    public int getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(String typeId) {
+    public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
 
     @Basic
-    @Column(name = "Name")
+    @Column(name = "Name", nullable = true, length = 50)
     public String getName() {
         return name;
     }
@@ -35,7 +35,7 @@ public class TblTypeEntity {
 
         TblTypeEntity that = (TblTypeEntity) o;
 
-        if (typeId != null ? !typeId.equals(that.typeId) : that.typeId != null) return false;
+        if (typeId != that.typeId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
@@ -43,7 +43,7 @@ public class TblTypeEntity {
 
     @Override
     public int hashCode() {
-        int result = typeId != null ? typeId.hashCode() : 0;
+        int result = typeId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

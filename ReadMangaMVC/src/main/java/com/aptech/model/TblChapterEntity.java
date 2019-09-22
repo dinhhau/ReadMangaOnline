@@ -6,22 +6,22 @@ import java.sql.Date;
 @Entity
 @Table(name = "tblChapter", schema = "dbo", catalog = "MangaOnline")
 public class TblChapterEntity {
-    private String chapterId;
+    private int chapterId;
     private Date createDate;
     private String linkImg;
 
     @Id
-    @Column(name = "ChapterID")
-    public String getChapterId() {
+    @Column(name = "ChapterID", nullable = false)
+    public int getChapterId() {
         return chapterId;
     }
 
-    public void setChapterId(String chapterId) {
+    public void setChapterId(int chapterId) {
         this.chapterId = chapterId;
     }
 
     @Basic
-    @Column(name = "CreateDate")
+    @Column(name = "CreateDate", nullable = true)
     public Date getCreateDate() {
         return createDate;
     }
@@ -31,7 +31,7 @@ public class TblChapterEntity {
     }
 
     @Basic
-    @Column(name = "LinkIMG")
+    @Column(name = "LinkIMG", nullable = true, length = 1)
     public String getLinkImg() {
         return linkImg;
     }
@@ -47,7 +47,7 @@ public class TblChapterEntity {
 
         TblChapterEntity that = (TblChapterEntity) o;
 
-        if (chapterId != null ? !chapterId.equals(that.chapterId) : that.chapterId != null) return false;
+        if (chapterId != that.chapterId) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
         if (linkImg != null ? !linkImg.equals(that.linkImg) : that.linkImg != null) return false;
 
@@ -56,7 +56,7 @@ public class TblChapterEntity {
 
     @Override
     public int hashCode() {
-        int result = chapterId != null ? chapterId.hashCode() : 0;
+        int result = chapterId;
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         result = 31 * result + (linkImg != null ? linkImg.hashCode() : 0);
         return result;

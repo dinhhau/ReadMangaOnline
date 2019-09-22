@@ -5,26 +5,26 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 public class TblComicAuthorEntityPK implements Serializable {
-    private String authorId;
-    private String comicId;
+    private int authorId;
+    private int comicId;
 
-    @Column(name = "AuthorID")
+    @Column(name = "AuthorID", nullable = false)
     @Id
-    public String getAuthorId() {
+    public int getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(String authorId) {
+    public void setAuthorId(int authorId) {
         this.authorId = authorId;
     }
 
-    @Column(name = "ComicID")
+    @Column(name = "ComicID", nullable = false)
     @Id
-    public String getComicId() {
+    public int getComicId() {
         return comicId;
     }
 
-    public void setComicId(String comicId) {
+    public void setComicId(int comicId) {
         this.comicId = comicId;
     }
 
@@ -35,16 +35,16 @@ public class TblComicAuthorEntityPK implements Serializable {
 
         TblComicAuthorEntityPK that = (TblComicAuthorEntityPK) o;
 
-        if (authorId != null ? !authorId.equals(that.authorId) : that.authorId != null) return false;
-        if (comicId != null ? !comicId.equals(that.comicId) : that.comicId != null) return false;
+        if (authorId != that.authorId) return false;
+        if (comicId != that.comicId) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = authorId != null ? authorId.hashCode() : 0;
-        result = 31 * result + (comicId != null ? comicId.hashCode() : 0);
+        int result = authorId;
+        result = 31 * result + comicId;
         return result;
     }
 }

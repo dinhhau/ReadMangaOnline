@@ -4,19 +4,20 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:jtds:sqlserver://localhost/[MangaOnline];instance=SQLEXPRESS1</property>
-    <property name="connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
-      <mapping class="com.aptech.model.TblAuthorEntity"/>
-      <mapping class="com.aptech.model.TblChapterEntity"/>
-      <mapping class="com.aptech.model.TblComicAuthorEntity"/>
-      <mapping class="com.aptech.model.TblComicTypeEntity"/>
-      <mapping class="com.aptech.model.TblCommentEntity"/>
-      <mapping class="com.aptech.model.TblRateEntity"/>
-      <mapping class="com.aptech.model.TblTypeEntity"/>
-      <mapping class="com.aptech.model.TblUserEntity"/>
-      <mapping class="com.aptech.model.TblUserChapterEntity"/>
-      <mapping class="com.aptech.model.TblcomicEntity"/>
-      <!-- <property name="connection.username"/> -->
+    <property name="connection.url">jdbc:jtds:sqlserver://localhost:1433/MangaOnline;instance=SQLEXPRESS1</property>
+    <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+
+    <mapping class="com.aptech.model.TblAuthorEntity"/>
+    <mapping class="com.aptech.model.TblChapterEntity"/>
+    <mapping class="com.aptech.model.TblComicEntity"/>
+    <mapping class="com.aptech.model.TblComicAuthorEntity"/>
+    <mapping class="com.aptech.model.TblComicTypeEntity"/>
+    <mapping class="com.aptech.model.TblCommentEntity"/>
+    <mapping class="com.aptech.model.TblRateEntity"/>
+    <mapping class="com.aptech.model.TblTypeEntity"/>
+    <mapping class="com.aptech.model.TblUserEntity"/>
+    <mapping class="com.aptech.model.TblUserChapterEntity"/>
+    <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
     <!-- DB schema will be updated if needed -->

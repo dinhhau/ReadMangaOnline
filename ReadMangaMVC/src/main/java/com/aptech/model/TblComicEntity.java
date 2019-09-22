@@ -4,26 +4,26 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "tblcomic", schema = "dbo", catalog = "MangaOnline")
-public class TblcomicEntity {
-    private String comicId;
+@Table(name = "tblComic", schema = "dbo", catalog = "MangaOnline")
+public class TblComicEntity {
+    private int comicId;
     private String name;
     private Date createDate;
     private String status;
     private String description;
 
     @Id
-    @Column(name = "ComicID")
-    public String getComicId() {
+    @Column(name = "ComicID", nullable = false)
+    public int getComicId() {
         return comicId;
     }
 
-    public void setComicId(String comicId) {
+    public void setComicId(int comicId) {
         this.comicId = comicId;
     }
 
     @Basic
-    @Column(name = "Name")
+    @Column(name = "Name", nullable = true, length = 50)
     public String getName() {
         return name;
     }
@@ -33,7 +33,7 @@ public class TblcomicEntity {
     }
 
     @Basic
-    @Column(name = "CreateDate")
+    @Column(name = "CreateDate", nullable = true)
     public Date getCreateDate() {
         return createDate;
     }
@@ -43,7 +43,7 @@ public class TblcomicEntity {
     }
 
     @Basic
-    @Column(name = "Status")
+    @Column(name = "Status", nullable = true, length = 10)
     public String getStatus() {
         return status;
     }
@@ -53,7 +53,7 @@ public class TblcomicEntity {
     }
 
     @Basic
-    @Column(name = "Description")
+    @Column(name = "Description", nullable = true, length = 50)
     public String getDescription() {
         return description;
     }
@@ -67,9 +67,9 @@ public class TblcomicEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TblcomicEntity that = (TblcomicEntity) o;
+        TblComicEntity that = (TblComicEntity) o;
 
-        if (comicId != null ? !comicId.equals(that.comicId) : that.comicId != null) return false;
+        if (comicId != that.comicId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
         if (status != null ? !status.equals(that.status) : that.status != null) return false;
@@ -80,7 +80,7 @@ public class TblcomicEntity {
 
     @Override
     public int hashCode() {
-        int result = comicId != null ? comicId.hashCode() : 0;
+        int result = comicId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
